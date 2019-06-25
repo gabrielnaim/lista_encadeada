@@ -22,7 +22,6 @@ int main(){
 		cria_Noh(inicio);	
 	}
 	
-
 	print_lista(inicio);
 
 	return 0;
