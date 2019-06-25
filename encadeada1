@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Noh{
+	int chave;
+	struct Noh *prox;
+};
+
+int main(){
+	struct Noh *inicio;
+	inicio = (struct Noh*) malloc(sizeof(struct Noh));
+	inicio->prox = NULL;
+
+	void print_lista(struct Noh *inicio);
+	void cria_Noh(struct Noh *inicio);
+
+	int n, i;
+	printf("Elementos: ");
+	scanf("%d", &n);
+
+	for(i = 0; i < n; i++){
+		cria_Noh(inicio);	
+	}
+	
+
+	print_lista(inicio);
+
+	return 0;
+}
+
+int cria_Noh(struct Noh *inicio){
+	struct Noh *novo;
+	novo = (struct Noh*) malloc(sizeof(struct Noh));
+	if(inicio->prox == NULL){
+		printf("Chave: ");
+		scanf("%d", &novo->chave);
+		novo->prox = NULL;
+		inicio->prox = novo;
+	}
+	else{
+		struct Noh *pont;
+		pont = inicio;
+		while(pont->prox != NULL){
+			pont = pont->prox;		
+		}
+		pont->prox = novo;
+		printf("Chave: ");
+		scanf("%d", &novo->chave);
+		novo->prox = NULL;
+	}
+	return 0;
+}
+
+int print_lista(struct Noh *inicio){
+	if(inicio == NULL){
+		printf("A lista esta vazia.");
+	}
+	else{
+		struct Noh *pont;
+		pont = inicio;
+		while(pont != NULL){
+			pont = pont->prox;
+			printf("%d\n", pont->chave);
+		} 
+	}
+	return 0;
+}
